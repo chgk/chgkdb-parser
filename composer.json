@@ -1,0 +1,21 @@
+{
+  "name": "chgk/chgkdb-parser",
+  "description": "Parsing and validation for import in db.chgk.info",
+  "minimum-stability": "stable",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Roman Semizarov",
+      "email": "semizarov@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Chgk\\ChgkDb\\Parser\\": "src"
+    }
+  },
+  "require": {
+    "symfony/console": "^4.0",
+    "twig/twig": "^2.4"
+  }
+}

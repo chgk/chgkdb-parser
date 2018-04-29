@@ -1,0 +1,76 @@
+<div class="chgkdb-package">
+<h1>{{ package.fields.package }}</h1>
+
+{% if package.fields.date %}
+    <div class="field date">
+        <p></p><strong>Дата: </strong>{{ package.fields.date | chgkdb_field | raw}}
+    </div>
+{% endif %}
+
+{% if package.fields.editor %}
+    <div class="field editor">
+        <strong>Редактор: </strong>{{ package.fields.editor | chgkdb_field | raw}}
+    </div>
+{% endif %}
+{% if package.fields.info %}
+    <div class="field info">
+        <strong>Инфо: </strong>{{ package.fields.info | chgkdb_field | raw}}
+    </div>
+{% endif %}
+
+
+{% for tour in package.tours %}
+    <h2>{{ tour.fields.tour }}</h2>
+    {% if tour.fields.date %}
+        <div class="field date">
+            <strong>Дата: </strong>{{ tour.fields.date | chgkdb_field | raw}}
+        </div>
+    {% endif %}
+
+    {% if tour.fields.editor %}
+            <div class="field editor">
+                <strong>Редактор:</strong> {{ tour.fields.editor | chgkdb_field | raw}}
+            </div>
+    {% endif %}
+    {% if tour.fields.info %}
+        <div class="field info">
+            <strong>Инфо: </strong>{{ tour.fields.info | chgkdb_field}}
+        </div>
+    {% endif %}
+
+    {% for question in tour.questions %}
+        <div class="field question">
+
+            <strong>Вопрос {{ question.fields.question.number }}:</strong> {{ question.fields.question |chgkdb_field | raw}}
+
+            {% if question.fields.answer %}
+                <div class="field answer">
+                    <strong>Ответ:</strong> {{ question.fields.answer | chgkdb_field}}
+                </div>
+            {% endif %}
+            {% if question.fields.pass_criteria %}
+                <div class="field pass_criteria">
+                    <strong>Зачёт:</strong> {{ question.fields.pass_criteria | chgkdb_field}}
+                </div>
+            {% endif %}
+            {% if question.fields.comment %}
+                <div class="field comment">
+                    <strong>Комментарий:</strong> {{ question.fields.comment | chgkdb_field}}
+                </div>
+            {% endif %}
+            {% if question.fields.source %}
+                <div class="field source">
+                    <strong>Источник:</strong> {{ question.fields.source | chgkdb_field}}
+                </div>
+            {% endif %}
+
+            {% if question.fields.author %}
+                <div class="field author">
+                    <strong>Автор:</strong> {{ question.fields.author | chgkdb_field}}
+                </div>
+            {% endif %}
+
+        </div>
+    {% endfor %}
+{% endfor %}
+</div>
