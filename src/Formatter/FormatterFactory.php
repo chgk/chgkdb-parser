@@ -2,8 +2,6 @@
 
 namespace Chgk\ChgkDb\Parser\Formatter;
 
-use Chgk\ChgkDb\Parser\ParserFactory\UnregisteredFormatterException;
-
 class FormatterFactory
 {
     /**

@@ -4,8 +4,9 @@ use Chgk\ChgkDb\Parser\Iterator\FileLineIterator;
 use Chgk\ChgkDb\Parser\ParserFactory\ParserFactory;
 
 require_once __DIR__.'/../vendor/autoload.php';
-
-$iterator = new FileLineIterator(__DIR__.'/ruch17st.txt', 'koi8-r');
+#$file = __DIR__.'/ruch17st.txt';
+$file = '/home/semizarov/db.chgk.info/cvsupdate/baza/matvee17.txt';
+$iterator = new FileLineIterator($file, 'koi8-r');
 
 try {
     $package = (new ParserFactory())->getParser('text')->parse($iterator);

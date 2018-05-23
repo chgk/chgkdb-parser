@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Chgk\ChgkDb\Parser\ParserFactory;
+namespace Chgk\ChgkDb\Parser\Formatter;
 
 class UnregisteredFormatterException extends \RuntimeException
 {

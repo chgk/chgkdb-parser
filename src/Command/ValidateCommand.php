@@ -4,10 +4,9 @@ declare(strict_types=1);
 namespace Chgk\ChgkDb\Parser\Command;
 
 use Chgk\ChgkDb\Parser\Formatter\FormatterFactory;
+use Chgk\ChgkDb\Parser\Formatter\UnregisteredFormatterException;
 use Chgk\ChgkDb\Parser\Iterator\FileLineIterator;
-use Chgk\ChgkDb\Parser\Iterator\TextLineIterator;
 use Chgk\ChgkDb\Parser\ParserFactory\ParserFactory;
-use Chgk\ChgkDb\Parser\ParserFactory\UnregisteredFormatterException;
 use Chgk\ChgkDb\Parser\ParserFactory\UnregisteredParserException;
 use Chgk\ChgkDb\Parser\TextParser\Exception\ParseException;
 use Chgk\ChgkDb\Parser\TextParser\TextParser;
