@@ -33,7 +33,7 @@ class TextParser implements ParserInterface
      * @return Package
      * @throws ParseException
      */
-    public function parse(ParserIteratorInterface $iterator)
+    public function parse(ParserIteratorInterface $iterator) :Package
     {
         $state = new ParserState();
         $iterator->next();

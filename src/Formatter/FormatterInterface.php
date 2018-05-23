@@ -7,5 +7,5 @@ use Chgk\ChgkDb\Parser\Result\Package;
 
 interface FormatterInterface
 {
-    public function format(Package $package);
+    public function format(Package $package, string $id = '') : string;
 }

@@ -3,9 +3,11 @@ declare(strict_types=1);
 
 namespace Chgk\ChgkDb\Parser\Command;
 
+use Chgk\ChgkDb\Parser\Formatter\FormatterFactory;
 use Chgk\ChgkDb\Parser\Iterator\FileLineIterator;
 use Chgk\ChgkDb\Parser\Iterator\TextLineIterator;
 use Chgk\ChgkDb\Parser\ParserFactory\ParserFactory;
+use Chgk\ChgkDb\Parser\ParserFactory\UnregisteredFormatterException;
 use Chgk\ChgkDb\Parser\ParserFactory\UnregisteredParserException;
 use Chgk\ChgkDb\Parser\TextParser\Exception\ParseException;
 use Chgk\ChgkDb\Parser\TextParser\TextParser;
@@ -24,6 +26,9 @@ class ValidateCommand extends Command
         $this->addArgument('file_name', InputArgument::REQUIRED);
         $this->addOption('encoding', 'e', InputOption::VALUE_OPTIONAL, 'Encoding', 'utf-8');
         $this->addOption('format', 'f', InputOption::VALUE_OPTIONAL, 'Input format', TextParser::FORMAT_KEY);
+        $this->addOption('output_format', 'o', InputOption::VALUE_OPTIONAL, "Output format", '');
+        $this->addOption('id', 'i', InputOption::VALUE_OPTIONAL, "Tournament ID", '');
+
     }
 
     /**
@@ -43,10 +48,20 @@ class ValidateCommand extends Command
             throw new ValidateCommandException('Invalid value format: '.$format);
         }
         try {
-            $parser->parse($iterator);
+            $package = $parser->parse($iterator);
         } catch (ParseException $exception) {
             throw new ValidateCommandException($input->getArgument('file_name').': '.$exception->getMessage());
         }
-        $output->writeln('<info>OK</info>');
+        $outputFormat = $input->getOption('output_format');
+        if (!$outputFormat) {
+            $output->writeln('<info>OK</info>');
+            return;
+        }
+        $id = $input->getOption('id');
+        try {
+            $output->write((new FormatterFactory())->getParser($outputFormat)->format($package, $id));
+        } catch (UnregisteredFormatterException $e) {
+            throw new ValidateCommandException('Invalid output format: '.$format, 0);
+        }
     }
 }

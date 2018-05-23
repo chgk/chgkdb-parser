@@ -7,6 +7,7 @@ use Chgk\ChgkDb\Parser\Result\Package;
 
 class HtmlFormatter implements FormatterInterface
 {
+    const FORMAT_KEY = 'html';
     /**
      * @var \Twig_Environment
      */
@@ -27,7 +28,7 @@ class HtmlFormatter implements FormatterInterface
         $this->twig->addFilter(new \Twig_Filter('chgkdb_field', [$this, 'fieldFilter'], array('is_safe' => array('all'))));
     }
 
-    public function format(Package $package)
+    public function format(Package $package, string $id = ''): string
     {
         try {
             return $this->twig->render('package.html.twig', ['package' => $package]);

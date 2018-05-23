@@ -37,7 +37,7 @@ class AbstractResultItem
     public function getField(string $key)
     {
         if (!isset($this->fields[$key])) {
-            throw new NoFieldException($key);
+            return '';
         }
         return $this->fields[$key];
     }

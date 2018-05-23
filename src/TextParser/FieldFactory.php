@@ -14,6 +14,7 @@ use Chgk\ChgkDb\Parser\TextParser\Field\FieldInterface;
 use Chgk\ChgkDb\Parser\TextParser\Field\InfoField;
 use Chgk\ChgkDb\Parser\TextParser\Field\PackageField;
 use Chgk\ChgkDb\Parser\TextParser\Field\PassCriteriaField;
+use Chgk\ChgkDb\Parser\TextParser\Field\ProcessedByField;
 use Chgk\ChgkDb\Parser\TextParser\Field\QuestionField;
 use Chgk\ChgkDb\Parser\TextParser\Field\RatingField;
 use Chgk\ChgkDb\Parser\TextParser\Field\SourceField;
@@ -74,6 +75,7 @@ class FieldFactory
                 TypeField::KEY,
                 QuestionField::KEY,
                 CopyrightField::KEY,
+                ProcessedByField::KEY
             ];
         }
 
