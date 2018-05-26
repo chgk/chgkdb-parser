@@ -45,7 +45,7 @@ abstract class AbstractField implements FieldInterface
 
     public function addToContent($string): void
     {
-        $this->content.=$string;
+        $this->content.=$string."\n";
     }
 
     public function __toString()

@@ -21,6 +21,6 @@ class TextLineIterator extends AbstractLineIterator
 
     protected function innerNext()
     {
-        $this->line = isset($this->lines[$this->key()+1]) ? $this->line = $this->lines[$this->key()+1] : false;
+        $this->line = isset($this->lines[$this->key()+1]) ? $this->lines[$this->key()+1] : false;
     }
 }
