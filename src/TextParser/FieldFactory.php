@@ -39,7 +39,8 @@ class FieldFactory
         PassCriteriaField::KEY => PassCriteriaField::class,
         TypeField::KEY => TypeField::class,
         CopyrightField::KEY => CopyrightField::class,
-        RatingField::KEY => RatingField::class
+        RatingField::KEY => RatingField::class,
+        ProcessedByField::KEY => ProcessedByField::class
     ];
 
 
