@@ -13,6 +13,11 @@ class Package extends AbstractResultItem
     private $isSingleTour = false;
 
     /**
+     * @var int|null
+     */
+    private $publishedByUserId = null;
+
+    /**
      * @return Tour[]
      */
     public function getTours(): array
@@ -37,5 +42,20 @@ class Package extends AbstractResultItem
     {
         $this->isSingleTour = true;
     }
-}
 
+    /**
+     * @return int|null
+     */
+    public function getPublishedByUserId(): ?int
+    {
+        return $this->publishedByUserId;
+    }
+
+    /**
+     * @param int|null $publishedByUserId
+     */
+    public function setPublishedByUserId(?int $publishedByUserId): void
+    {
+        $this->publishedByUserId = $publishedByUserId;
+    }
+}
