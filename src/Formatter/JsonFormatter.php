@@ -27,6 +27,7 @@ class JsonFormatter implements FormatterInterface
 
     /**
      * @param Package $package
+     * @return string
      * @throws \Chgk\ChgkDb\Parser\Result\Exception\NoFieldException
      */
     public function format(Package $package, string $id = '') : string
@@ -49,6 +50,7 @@ class JsonFormatter implements FormatterInterface
             'finishedAt' => $to,
             'id' => $id,
             'title' => (string)$package->getField(PackageField::KEY),
+            'publishedBy' => $package->getPublishedByUserId(),
             'tours' => []
         ];
 
