@@ -50,7 +50,7 @@ class JsonFormatter implements FormatterInterface
             'finishedAt' => $to,
             'id' => $id,
             'title' => (string)$package->getField(PackageField::KEY),
-            'publishedBy' => $package->getPublishedByUserId(),
+            'processedBy' => $package->getPublishedByUserId(),
             'tours' => []
         ];
 
