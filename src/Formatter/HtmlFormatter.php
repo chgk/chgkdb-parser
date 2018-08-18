@@ -82,7 +82,7 @@ class HtmlFormatter implements FormatterInterface
                 $sound = $matches[2];
                 $line = $matches[3];
                 if (!preg_match('/^https?:/', $sound)) {
-                    $sound = 'http://db.chgk.info/sounds/db/'.$sound;
+                    $sound = '/sites/default/files/'.$sound;
                 }
 
                 $this->finishParagraph($result, $p, $inRazdatka, $inPre);
@@ -97,7 +97,7 @@ class HtmlFormatter implements FormatterInterface
                 $pics = $matches[1];
                 foreach ($pics as &$pic) {
                     if (!preg_match('/^https?:/', $pic)) {
-                        $pic = 'http://db.chgk.info/images/db/'.$pic;
+                        $pic = '/sites/default/files/'.$pic;
                     }
                     $pic = "<img src=\"$pic\" alt=\"\"/>";
 
