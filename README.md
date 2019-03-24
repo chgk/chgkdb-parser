@@ -24,7 +24,7 @@
 (aud: 20170002.mp3)
 (aud: https://db.chgk.info/sounds/db/20170002.mp3)
 ```
-Если указано имя файла, а не полный путь то файл берётся из http://db.chgk.info/images/so/
+Если указано имя файла, а не полный путь то файл берётся из http://db.chgk.info/sounds/db/
 
 ## Демо
 http://api.baza-voprosov.ru/validator
@@ -40,7 +40,7 @@ composer install
 ```
 
 2. Как компонента
-В каталоге, где естьь файл composer.json
+В каталоге, где есть файл composer.json
 ```
 composer config repositories.chgkdb-parser vcs https://github.com/chgk/chgkdb-parser
 composer require chgk/chgkdb-parser

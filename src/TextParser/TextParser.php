@@ -6,6 +6,7 @@ namespace Chgk\ChgkDb\Parser\TextParser;
 use Chgk\ChgkDb\Parser\Iterator\ParserIteratorInterface;
 use Chgk\ChgkDb\Parser\ParserFactory\ParserInterface;
 use Chgk\ChgkDb\Parser\Result\Package;
+use Chgk\ChgkDb\Parser\TextParser\Exception\InvalidFieldException;
 use Chgk\ChgkDb\Parser\TextParser\Exception\InvalidFieldValue;
 use Chgk\ChgkDb\Parser\TextParser\Exception\ParseException;
 use Chgk\ChgkDb\Parser\TextParser\Exception\UnexpectedException;
@@ -82,7 +83,11 @@ class TextParser implements ParserInterface
             $field->setNumber($number);
         }
 
-        $stateObject->setCurrentField($field);
+        try {
+            $stateObject->setCurrentField($field);
+        } catch (InvalidFieldException $e) {
+            throw new ParseException($iterator->key(), $e->getMessage());
+        }
         if ($line) {
             try {
                 $stateObject->addToCurrentField($line);

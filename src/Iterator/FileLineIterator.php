@@ -50,6 +50,7 @@ class FileLineIterator extends AbstractLineIterator
 
     protected function innerNext()
     {
-        $this->line = rtrim(fgets($this->fileHandle));
+        $line = fgets($this->fileHandle);
+        $this->line = $line !== false ? rtrim($line) : false;
     }
 }
