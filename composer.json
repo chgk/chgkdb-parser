@@ -15,8 +15,8 @@
     }
   },
   "require": {
-    "symfony/console": "^4.0",
-    "twig/twig": "^2.4",
+    "symfony/console": "5.*",
+    "twig/twig": "*",
     "ext-json": "*"
   }
 }
