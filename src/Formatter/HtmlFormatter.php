@@ -4,36 +4,41 @@ declare(strict_types=1);
 namespace Chgk\ChgkDb\Parser\Formatter;
 
 use Chgk\ChgkDb\Parser\Result\Package;
+use RuntimeException;
+use Twig\Environment;
+use Twig\Error\Error;
+use Twig\Loader\FilesystemLoader;
+use Twig\TwigFilter;
 
 class HtmlFormatter implements FormatterInterface
 {
     const FORMAT_KEY = 'html';
     /**
-     * @var \Twig_Environment
+     * @var Environment
      */
     private $twig;
 
     public static function create()
     {
-        $loader = new \Twig_Loader_Filesystem(__DIR__.'/twig');
+        $loader = new FilesystemLoader(__DIR__.'/twig');
         $cache = sys_get_temp_dir().'/chgkdb-formatter-cache';
-        $twig = new \Twig_Environment($loader, ['cache' => $cache]);
+        $twig = new Environment($loader, ['cache' => $cache]);
 
         return new self($twig);
     }
 
-    public function __construct(\Twig_Environment $twigEnvironment)
+    public function __construct(Environment $twigEnvironment)
     {
         $this->twig = $twigEnvironment;
-        $this->twig->addFilter(new \Twig_Filter('chgkdb_field', [$this, 'fieldFilter'], array('is_safe' => array('all'))));
+        $this->twig->addFilter(new TwigFilter('chgkdb_field', [$this, 'fieldFilter'], array('is_safe' => array('all'))));
     }
 
     public function format(Package $package, string $id = ''): string
     {
         try {
             return $this->twig->render('package.html.twig', ['package' => $package]);
-        } catch (\Twig_Error $e) {
-            throw new \RuntimeException('Twig error: '.$e->getMessage(), 0, $e);
+        } catch (Error $e) {
+            throw new RuntimeException('Twig error: '.$e->getMessage(), 0, $e);
         }
     }
 
@@ -127,7 +132,6 @@ class HtmlFormatter implements FormatterInterface
             return;
         }
         if ($inPre) {
-            $inRazdatka = false;
             $result.="<pre>\n$p</pre>\n";
         } else {
             $result .= "<p".($result && !$inRazdatka ? '' : ' class="first"').">$p</p>\n";
